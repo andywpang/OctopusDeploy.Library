@@ -1,0 +1,38 @@
+{
+  "Id": "ActionTemplates-321",
+  "Name": "IIS Website AppFabric Application - Enable Auto-Start",
+  "Description": "Configures an AppFabric application to enable Auto-Start on all services for the application.",
+  "ActionType": "Octopus.Script",
+  "Version": 1,
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "Import-Module WebAdministration\r\n\r\n$webSiteName = $OctopusParameters['WebSiteName']\r\n$virtualPath = $OctopusParameters['VirtualPath']\r\n\r\nSet-ASApplication -SiteName $webSitename -VirtualPath $virtualPath -AutoStartMode 'All' -EnableApplicationPool"
+  },
+  "SensitiveProperties": {},
+  "Parameters": [
+    {
+      "Name": "WebSiteName",
+      "Label": "Website Name",
+      "HelpText": "The name of the website",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Name": "VirtualPath",
+      "Label": "Virtual Path",
+      "HelpText": "The virtual path for the application or directory",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LastModifiedOn": "2015-09-01T03:15:36.984+00:00",
+  "LastModifiedBy": "nshenoy@us.corp.mimeo.com",
+  "$Meta": {
+    "ExportedAt": "2015-09-01T03:15:38.671Z",
+    "OctopusVersion": "2.6.5.1010",
+    "Type": "ActionTemplate"
+  }
+}
